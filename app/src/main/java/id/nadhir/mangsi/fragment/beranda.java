@@ -1,6 +1,7 @@
 package id.nadhir.mangsi.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -13,13 +14,17 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import id.nadhir.mangsi.Search;
 import id.nadhir.mangsi.adapter.SliderPagerAdapterBeranda;
 
 import java.util.ArrayList;
@@ -27,6 +32,8 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import id.nadhir.mangsi.R;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -96,8 +103,8 @@ public class beranda extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
-        vp_slider = (ViewPager) view.findViewById(R.id.vp_slider);
-        ll_dots = (LinearLayout) view.findViewById(R.id.ll_dots);
+        vp_slider = view.findViewById(R.id.vp_slider);
+        ll_dots = view.findViewById(R.id.ll_dots);
 
         // method for initialisation
         setActionBar();
@@ -188,11 +195,22 @@ public class beranda extends Fragment {
             parent.setPadding(0,0,0,0);//for tab otherwise give space in tab
             parent.setContentInsetsAbsolute(0,0);
 
+            View view = actionBar.getCustomView();
+            ImageButton searchButton = view.findViewById(R.id.ib_actionbar_search);
+            searchButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getContext(), Search.class);
+                    startActivity(intent);
+                    getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                }
+            });
+
             // You customization
             final int actionBarColor = getResources().getColor(R.color.action_bar);
             actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
         } else {
-            Toast.makeText(context, "ActionBar Null", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "setActionBar: ActionBar Null");
         }
 
     }
