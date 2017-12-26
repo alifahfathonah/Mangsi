@@ -12,7 +12,7 @@ import android.view.ViewGroup;
 
 import id.nadhir.mangsi.R;
 import id.nadhir.mangsi.adapter.RecyclerAdapterBeranda;
-import id.nadhir.mangsi.model.percetakan_collection;
+import id.nadhir.mangsi.model.Percetakan_collection;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -83,7 +83,7 @@ public class beranda_baru extends Fragment {
             }
         };
         rv.setLayoutManager(linearLayoutManager);
-        rv.setAdapter(new RecyclerAdapterBeranda(this.getContext(), percetakan_collection.getSpaceships2()));
+        rv.setAdapter(new RecyclerAdapterBeranda(this.getContext(), Percetakan_collection.getSpaceships2()));
         return view;
     }
 

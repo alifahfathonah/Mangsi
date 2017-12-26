@@ -7,8 +7,7 @@ package id.nadhir.mangsi.adapter;
 import android.widget.ImageView;
 
 import id.nadhir.mangsi.R;
-import id.nadhir.mangsi.model.Kategori;
-import id.nadhir.mangsi.model.percetakan;
+import id.nadhir.mangsi.model.Percetakan;
 
 import android.content.Context;
         import android.support.v7.widget.RecyclerView;
@@ -22,9 +21,10 @@ import com.iarcuschin.simpleratingbar.SimpleRatingBar;
 import java.util.ArrayList;
 
 public class RecyclerAdapterBeranda extends RecyclerView.Adapter<RecyclerAdapterBeranda.MyHolder> {
-    private ArrayList<percetakan> spaceships;
+    private ArrayList<Percetakan> spaceships;
     private Context c;
-    public RecyclerAdapterBeranda(Context c, ArrayList<percetakan> spaceships) {
+
+    public RecyclerAdapterBeranda(Context c, ArrayList<Percetakan> spaceships) {
         this.spaceships = spaceships;
         this.c = c;
     }
@@ -41,7 +41,7 @@ public class RecyclerAdapterBeranda extends RecyclerView.Adapter<RecyclerAdapter
      */
     @Override
     public void onBindViewHolder(MyHolder holder, int position) {
-        percetakan s=spaceships.get(position);
+        Percetakan s = spaceships.get(position);
         holder.nameTxt.setText(s.getName());
         holder.img.setImageResource(s.getImage());
         holder.ratingBar.setRating(s.getRating());

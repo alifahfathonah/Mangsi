@@ -65,7 +65,7 @@
             android:layout_gravity="center"
             android:background="@drawable/ic_menubar_notifiasi_count"/>
         <ImageButton
-            android:id="@+id/tv_actionbar_notification"
+            android:id="@+id/ib_actionbar_notification"
             android:scaleX="0.7"
             android:scaleY="0.7"
             android:background="@color/action_bar"

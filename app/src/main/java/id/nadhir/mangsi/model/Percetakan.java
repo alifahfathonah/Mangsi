@@ -4,7 +4,7 @@ package id.nadhir.mangsi.model;
  * Created by nadhir on 12/25/17.
  */
 
-public class percetakan {
+public class Percetakan {
     /*
     SPACESHIP PROPERTIES
      */

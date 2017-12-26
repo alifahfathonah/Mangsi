@@ -4,17 +4,13 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,15 +19,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import id.nadhir.mangsi.R;
-import id.nadhir.mangsi.adapter.RecyclerAdapterBeranda;
 import id.nadhir.mangsi.adapter.RecyclerAdapterKategori;
 import id.nadhir.mangsi.adapter.SliderPagerAdapterBeranda;
 import id.nadhir.mangsi.model.Kategori_collection;
-import id.nadhir.mangsi.model.percetakan_collection;
 
 /**
  * A simple {@link Fragment} subclass.

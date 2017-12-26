@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -43,7 +44,7 @@ import static android.content.ContentValues.TAG;
  * Use the {@link beranda#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class beranda extends Fragment {
+public class beranda extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -54,7 +55,9 @@ public class beranda extends Fragment {
     private String mParam2;
 
     private ViewPager vp_slider;
-    private LinearLayout ll_dots;
+    private TextView tv_notificationCount;
+    private LinearLayout ll_dots, ll_notification;
+    private ImageButton searchButton, ib_actionbar_notification;
     private Context context;
     private Resources resources;
     SliderPagerAdapterBeranda sliderPagerAdapterBeranda = null;
@@ -100,7 +103,6 @@ public class beranda extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         View view = inflater.inflate(R.layout.fragment_beranda, container, false);
 
         vp_slider = view.findViewById(R.id.vp_slider);
@@ -110,7 +112,7 @@ public class beranda extends Fragment {
         setActionBar();
         init();
 
-// method for adding indicators
+        // method for adding indicators
         addBottomDots(0);
 
         final Handler handler = new Handler();
@@ -195,16 +197,15 @@ public class beranda extends Fragment {
             parent.setPadding(0,0,0,0);//for tab otherwise give space in tab
             parent.setContentInsetsAbsolute(0,0);
 
-            View view = actionBar.getCustomView();
-            ImageButton searchButton = view.findViewById(R.id.ib_actionbar_search);
-            searchButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(getContext(), Search.class);
-                    startActivity(intent);
-                    getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                }
-            });
+            //ketika di click search akan intent ke activity search
+            View viewActionbar = actionBar.getCustomView();
+            searchButton = viewActionbar.findViewById(R.id.ib_actionbar_search);
+            searchButton.setOnClickListener(this);
+            ib_actionbar_notification = viewActionbar.findViewById(R.id.ib_actionbar_notification);
+            ib_actionbar_notification.setOnClickListener(this);
+            ll_notification = viewActionbar.findViewById(R.id.ll_notification);
+            ll_notification.setOnClickListener(this);
+            tv_notificationCount = viewActionbar.findViewById(R.id.tv_actionbar_notificationCount);
 
             // You customization
             final int actionBarColor = getResources().getColor(R.color.action_bar);
@@ -219,8 +220,8 @@ public class beranda extends Fragment {
 
         slider_image_list = new ArrayList<>();
 
-//Add few items to slider_image_list ,this should contain url of images which should be displayed in slider
-// here i am adding few sample image links, you can add your own
+        //Add few items to slider_image_list ,this should contain url of images which should be displayed in slider
+        // here i am adding few sample image links, you can add your own
 
         slider_image_list.add("http://images.all-free-download.com/images/graphiclarge/mountain_bongo_animal_mammal_220289.jpg");
         slider_image_list.add("http://images.all-free-download.com/images/graphiclarge/bird_mountain_bird_animal_226401.jpg");
@@ -264,6 +265,36 @@ public class beranda extends Fragment {
         if (dots.length > 0)
             dots[currentPage].setTextColor(resources.getColor(R.color.colorAccent));
     }
+
+    boolean status = false;
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.ib_actionbar_notification: {
+                //mecoba memberi action ketika di klik pada notifikasi
+                Log.d(TAG, "onClick: Pressed bruh");
+                if (status) {
+                    tv_notificationCount.setVisibility(View.VISIBLE);
+                    status = !status;
+                } else {
+                    tv_notificationCount.setVisibility(View.INVISIBLE);
+                    status = !status;
+                }
+                break;
+            }
+            case R.id.ib_actionbar_search: {
+                //action ketika di klik search buttonImage
+                Intent intent = new Intent(getContext(), Search.class);
+                startActivity(intent);
+                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
