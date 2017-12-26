@@ -1,0 +1,79 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:enabled="false"
+    app:contentInsetLeft="0dp"
+    app:contentInsetStart="0dp"
+    android:contentInsetRight="0dp"
+    android:contentInsetEnd="0dp"
+    app:contentInsetRight="0dp"
+    app:contentInsetEnd="0dp"
+    android:orientation="horizontal">
+
+
+    <ImageView
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="0dp"
+        android:background="@color/action_bar"
+        android:paddingBottom="5dp"
+        android:paddingLeft="0dp"
+        android:paddingTop="5dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/logo_white"
+        android:paddingStart="0dp"
+        android:layout_marginStart="0dp" />
+
+    <LinearLayout
+        android:id="@+id/ll_actionbar_search"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/ib_actionbar_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/action_bar"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_search_actionbar" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_notification"
+        android:layout_marginRight="0dp"
+        android:background="@color/action_bar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_actionbar_notificationCount"
+            android:layout_marginRight="-10dp"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:textColor="@color/white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textAlignment="gravity"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_menubar_notifiasi_count"/>
+        <ImageButton
+            android:id="@+id/tv_actionbar_notification"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:background="@color/action_bar"
+            android:scaleType="centerInside"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_menubar_notifikasi"/>
+    </LinearLayout>
+
+
+</LinearLayout>
