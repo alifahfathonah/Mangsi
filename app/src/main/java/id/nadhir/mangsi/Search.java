@@ -1,19 +1,16 @@
 package id.nadhir.mangsi;
 
+import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
-import android.telecom.Call;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class Search extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -59,13 +56,16 @@ public class Search extends AppCompatActivity implements SearchView.OnQueryTextL
             searchView.setQueryHint("Search");
             searchView.setSubmitButtonEnabled(true);
             searchView.setBackgroundResource(R.drawable.search_background);
+            searchView.setMaxWidth(Integer.MAX_VALUE);
             EditText editText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
             editText.setHintTextColor(getResources().getColor(R.color.colorGray));
             editText.setTextColor(getResources().getColor(R.color.black));
             ImageView searchIconView = searchView.findViewById(android.support.v7.appcompat.R.id.search_go_btn);
             searchIconView.setImageResource(R.drawable.ic_search);
+            searchIconView.setPadding(0, 0, 0, 0);
             ImageView searchCancelView = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
             searchCancelView.setColorFilter(R.color.colorGray);
+            searchCancelView.setPadding(0, 0, 0, 0);
         } else {
             Log.d(TAG, "onCreateOptionsMenu: searchView Object null");
         }
