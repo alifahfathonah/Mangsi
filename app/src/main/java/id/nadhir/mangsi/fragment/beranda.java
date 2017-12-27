@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -17,13 +16,11 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import id.nadhir.mangsi.Search;
 import id.nadhir.mangsi.adapter.SliderPagerAdapterBeranda;
@@ -181,7 +178,7 @@ public class beranda extends Fragment implements View.OnClickListener {
     private void setActionBar(){
         // Inflate your custom layout
         final ViewGroup actionBarLayout = (ViewGroup) getActivity().getLayoutInflater().inflate(
-                R.layout.action_bar,
+                R.layout.action_bar_beranda,
                 null);
 
         // Set up your ActionBar

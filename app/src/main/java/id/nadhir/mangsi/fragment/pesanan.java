@@ -9,6 +9,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
@@ -22,18 +23,20 @@ import java.util.ArrayList;
 
 import id.nadhir.mangsi.R;
 import id.nadhir.mangsi.adapter.RecyclerAdapterKategori;
+import id.nadhir.mangsi.adapter.RecyclerAdapterPesanan;
 import id.nadhir.mangsi.adapter.SliderPagerAdapterBeranda;
 import id.nadhir.mangsi.model.Kategori_collection;
+import id.nadhir.mangsi.model.Pesanan_collection;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link kategori.OnFragmentInteractionListener} interface
+ * {@link pesanan.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link kategori#newInstance} factory method to
+ * Use the {@link pesanan#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class kategori extends Fragment {
+public class pesanan extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,7 +56,7 @@ public class kategori extends Fragment {
     int page_position = 0;
     private OnFragmentInteractionListener mListener;
 
-    public kategori() {
+    public pesanan() {
         // Required empty public constructor
     }
 
@@ -66,8 +69,8 @@ public class kategori extends Fragment {
      * @return A new instance of fragment beranda.
      */
     // TODO: Rename and change types and number of parameters
-    public static kategori newInstance(String param1, String param2) {
-        kategori fragment = new kategori();
+    public static pesanan newInstance(String param1, String param2) {
+        pesanan fragment = new pesanan();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -91,21 +94,20 @@ public class kategori extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_kategori, container, false);
+        View view = inflater.inflate(R.layout.fragment_pesanan, container, false);
 
-        RecyclerView rv= (RecyclerView) view.findViewById(R.id.rv_kategori);
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(),2) {
+        RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_pesanan);
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false) {
             @Override
             public boolean canScrollVertically() {
                 //disable / enable scrolling RecyclerView
                 return true;
             }
         };
-        rv.setLayoutManager(gridLayoutManager);
-        rv.setAdapter(new RecyclerAdapterKategori(this.getContext(), Kategori_collection.getKategori()));
+        rv.setLayoutManager(linearLayoutManager);
+        rv.setAdapter(new RecyclerAdapterPesanan(this.getContext(), Pesanan_collection.getPesanan()));
 
         setActionBar();
-
 
         // Inflate the layout for this fragment
         return view;
@@ -121,7 +123,7 @@ public class kategori extends Fragment {
     private void setActionBar() {
         // Inflate your custom layout
         final ViewGroup actionBarLayout = (ViewGroup) getActivity().getLayoutInflater().inflate(
-                R.layout.action_bar_kategori,
+                R.layout.action_bar_pesanan,
                 null);
 
         // Set up your ActionBar

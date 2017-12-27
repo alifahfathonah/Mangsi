@@ -18,13 +18,15 @@ import id.nadhir.mangsi.fragment.beranda;
 import id.nadhir.mangsi.fragment.beranda_baru;
 import id.nadhir.mangsi.fragment.beranda_populer;
 import id.nadhir.mangsi.fragment.kategori;
+import id.nadhir.mangsi.fragment.pesanan;
 import id.nadhir.mangsi.helper.BottomNavigationViewHelper;
 
 public class Beranda extends AppCompatActivity
                      implements beranda.OnFragmentInteractionListener,
                                 beranda_populer.OnFragmentInteractionListener,
                                 beranda_baru.OnFragmentInteractionListener,
-                                kategori.OnFragmentInteractionListener
+        kategori.OnFragmentInteractionListener,
+        pesanan.OnFragmentInteractionListener
 {
 
 
@@ -79,7 +81,7 @@ public class Beranda extends AppCompatActivity
         } else if (position == 1) {
             newFragment = new kategori();
         } else if (position == 2) {
-            newFragment = new beranda();
+            newFragment = new pesanan();
         }
 
         getSupportFragmentManager().beginTransaction().replace(
