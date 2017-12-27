@@ -1,10 +1,11 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="60dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:enabled="false"
     app:contentInsetLeft="0dp"
     app:contentInsetStart="0dp"
+    android:maxHeight="60dp"
     android:contentInsetRight="0dp"
     android:contentInsetEnd="0dp"
     app:contentInsetRight="0dp"
@@ -12,48 +13,47 @@
     android:orientation="horizontal">
 
 
-    <ImageView
-        android:scaleX="0.7"
-        android:scaleY="0.7"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="0dp"
-        android:background="@color/action_bar"
-        android:paddingBottom="5dp"
-        android:paddingLeft="0dp"
-        android:paddingTop="5dp"
-        android:scaleType="centerInside"
-        android:src="@drawable/logo_white"
-        android:paddingStart="0dp"
-        android:layout_marginStart="0dp" />
+
 
     <LinearLayout
         android:id="@+id/ll_actionbar_search"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_weight="2"
+        android:gravity="center_vertical"
+        android:background="@color/colorPrimary"
         android:orientation="horizontal">
 
-        <ImageButton
-            android:id="@+id/ib_actionbar_search"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+        <ImageView
+            android:id="@+id/iv_logo"
+            android:layout_weight="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:layout_marginLeft="0dp"
+            android:layout_marginStart="0dp"
             android:background="@color/action_bar"
+            android:paddingLeft="0dp"
+            android:paddingStart="0dp"
             android:scaleType="centerInside"
-            android:src="@drawable/ic_search_actionbar" />
+            android:src="@drawable/logo_white" />
 
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_notification"
-        android:layout_marginRight="0dp"
-        android:background="@color/action_bar"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        <EditText
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:layout_weight="2"
+            android:inputType="text"
+            android:imeOptions="actionSearch"
+            android:id="@+id/et_actionbar_search"
+            android:drawableEnd="@drawable/ic_search"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/search_background" />
         <TextView
+            android:layout_marginEnd="-10dp"
             android:id="@+id/tv_actionbar_notificationCount"
-            android:layout_marginRight="-10dp"
             android:scaleX="0.7"
             android:scaleY="0.7"
             android:textColor="@color/white"
@@ -65,15 +65,16 @@
             android:layout_gravity="center"
             android:background="@drawable/ic_menubar_notifiasi_count"/>
         <ImageButton
-            android:id="@+id/ib_actionbar_notification"
             android:scaleX="0.7"
             android:scaleY="0.7"
+            android:id="@+id/ib_actionbar_notification"
             android:background="@color/action_bar"
             android:scaleType="centerInside"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/ic_menubar_notifikasi"/>
+
     </LinearLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

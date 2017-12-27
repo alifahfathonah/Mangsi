@@ -7,13 +7,17 @@ import android.os.Bundle;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.telecom.Call;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 public class Search extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
+    private String TAG = "TAG";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,8 +57,17 @@ public class Search extends AppCompatActivity implements SearchView.OnQueryTextL
             searchView.requestFocus();
             searchView.setOnQueryTextListener(this);
             searchView.setQueryHint("Search");
+            searchView.setSubmitButtonEnabled(true);
+            searchView.setBackgroundResource(R.drawable.search_background);
+            EditText editText = searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
+            editText.setHintTextColor(getResources().getColor(R.color.colorGray));
+            editText.setTextColor(getResources().getColor(R.color.black));
+            ImageView searchIconView = searchView.findViewById(android.support.v7.appcompat.R.id.search_go_btn);
+            searchIconView.setImageResource(R.drawable.ic_search);
+            ImageView searchCancelView = searchView.findViewById(android.support.v7.appcompat.R.id.search_close_btn);
+            searchCancelView.setColorFilter(R.color.colorGray);
         } else {
-            Toast.makeText(this, "SearchItem null", Toast.LENGTH_SHORT).show();
+            Log.d(TAG, "onCreateOptionsMenu: searchView Object null");
         }
         return super.onCreateOptionsMenu(menu);
     }

@@ -16,8 +16,10 @@ import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -54,7 +56,8 @@ public class beranda extends Fragment implements View.OnClickListener {
     private ViewPager vp_slider;
     private TextView tv_notificationCount;
     private LinearLayout ll_dots, ll_notification;
-    private ImageButton searchButton, ib_actionbar_notification;
+    private ImageButton ib_actionbar_notification;
+    private EditText searchButton;
     private Context context;
     private Resources resources;
     SliderPagerAdapterBeranda sliderPagerAdapterBeranda = null;
@@ -106,7 +109,6 @@ public class beranda extends Fragment implements View.OnClickListener {
         ll_dots = view.findViewById(R.id.ll_dots);
 
         // method for initialisation
-        setActionBar();
         init();
 
         // method for adding indicators
@@ -175,43 +177,6 @@ public class beranda extends Fragment implements View.OnClickListener {
         super.onPause();
     }
 
-    private void setActionBar(){
-        // Inflate your custom layout
-        final ViewGroup actionBarLayout = (ViewGroup) getActivity().getLayoutInflater().inflate(
-                R.layout.action_bar_beranda,
-                null);
-
-        // Set up your ActionBar
-        final ActionBar actionBar = ((AppCompatActivity) this.getActivity()).getSupportActionBar();
-        if (actionBar != null) {
-            actionBar.setDisplayShowHomeEnabled(false);
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setDisplayShowCustomEnabled(true);
-            actionBar.setCustomView(actionBarLayout);
-
-            //set padding biar mepet
-            Toolbar parent =(Toolbar) actionBarLayout.getParent();
-            parent.setPadding(0,0,0,0);//for tab otherwise give space in tab
-            parent.setContentInsetsAbsolute(0,0);
-
-            //ketika di click search akan intent ke activity search
-            View viewActionbar = actionBar.getCustomView();
-            searchButton = viewActionbar.findViewById(R.id.ib_actionbar_search);
-            searchButton.setOnClickListener(this);
-            ib_actionbar_notification = viewActionbar.findViewById(R.id.ib_actionbar_notification);
-            ib_actionbar_notification.setOnClickListener(this);
-            ll_notification = viewActionbar.findViewById(R.id.ll_notification);
-            ll_notification.setOnClickListener(this);
-            tv_notificationCount = viewActionbar.findViewById(R.id.tv_actionbar_notificationCount);
-
-            // You customization
-            final int actionBarColor = getResources().getColor(R.color.action_bar);
-            actionBar.setBackgroundDrawable(new ColorDrawable(actionBarColor));
-        } else {
-            Log.d(TAG, "setActionBar: ActionBar Null");
-        }
-
-    }
 
     private void init() {
 
@@ -263,33 +228,9 @@ public class beranda extends Fragment implements View.OnClickListener {
             dots[currentPage].setTextColor(resources.getColor(R.color.colorAccent));
     }
 
-    boolean status = false;
 
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.ib_actionbar_notification: {
-                //mecoba memberi action ketika di klik pada notifikasi
-                Log.d(TAG, "onClick: Pressed bruh");
-                if (status) {
-                    tv_notificationCount.setVisibility(View.VISIBLE);
-                    status = !status;
-                } else {
-                    tv_notificationCount.setVisibility(View.INVISIBLE);
-                    status = !status;
-                }
-                break;
-            }
-            case R.id.ib_actionbar_search: {
-                //action ketika di klik search buttonImage
-                Intent intent = new Intent(getContext(), Search.class);
-                startActivity(intent);
-                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-                break;
-            }
-            default:
-                break;
-        }
     }
 
     /**
